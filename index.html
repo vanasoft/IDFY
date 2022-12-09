@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Jill VandenDriessche">
+    <title>HOWEST tariff chooser</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sono:wght@200;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Sono:wght@200;500&display=swap"
+          rel="stylesheet">
+
+    <link rel="stylesheet" href="assets/css/reset.css">
+    <link rel="stylesheet" href="assets/css/screen.css">
+
+    <script src="assets/js/config.js"></script>
+    <script src="assets/js/data/tariffs.js"></script>
+
+    <script src="assets/js/consumption-component/calculations.js"></script>
+
+    <script src="assets/js/tariff-matcher/ui-interaction-handler.js"></script>
+    <script src="assets/js/tariff-matcher/calculations.js"></script>
+    <script src="assets/js/tariff-matcher/matcher.js"></script>
+    <script src="assets/js/tariff-matcher/renderer.js"></script>
+
+    <script src="assets/js/tariff-overview-component/sorter.js"></script>
+    <script src="assets/js/tariff-overview-component/renderer.js"></script>
+    <script src="assets/js/user-information-processing-component/helpers.js"></script>
+    <script src="assets/js/user-information-processing-component/ui-interaction-handler.js"></script>
+    <script src="assets/js/init.js"></script>
+    <script src="assets/js/script.js"></script>
+
+</head>
+<body>
+
+<h1>HOWEST tariff chooser</h1>
+
+<form action="#" method="POST" id="user-information">
+    <fieldset class="step" id="general-information">
+        <legend>General information</legend>
+
+        <!-- mandatory IDs and names for form fields
+         #postcode
+         vatpercentage (#residential, #business)
+         contracttype (#electricity,#gas)
+
+         ID/name values of other fields in this fieldset are free of choice
+         -->
+
+        <button type="button" class="next" data-target="personal-preferences">Configure personal preferences</button>
+    </fieldset>
+    <fieldset class="step" id="personal-preferences">
+        <legend>Personal preferences</legend>
+
+
+        <!-- mandatory IDs and names for form fields
+       #renewability
+       amenities (#el-veh, #solar)
+       #amount-of-people
+       propertytype (#apartment,#terraced,#semi-detached,#detached)
+       insulation (#insulation-yes,#insulation-no)
+
+       ID/name values of other fields in this fieldset are free of choice
+       -->
+
+
+
+        <div class="flexcontainer navigation">
+            <button type="button" class="previous">Configure general information
+            </button>
+            <button type="submit" class="next">Display my matching tariffs</button>
+        </div>
+    </fieldset>
+</form>
+
+<section class="step" id="tariff-overview">
+    <h2>Tariff overview</h2>
+    <p>Based on your estimated consumption of: </p>
+    <ul>
+        <li class="electricityEstimate"><span>1000 kWh</span> for electricity</li>
+        <li class="gasEstimate"><span>1000 kWh</span> for gas</li>
+    </ul>
+
+    <div class="flexcontainer">
+        <article>
+            <h3>optimal electricity</h3><a href="#">view details</a><p>€ 149.50 / month</p>   <button>Choose plan</button>
+            <div class="details hidden">
+                <a href="#">close</a>
+                <dl>
+                    <dt>Price per kWh:</dt>
+                    <dd>€ 1 / kWh</dd>
+                    <dt>Renewable energy percentage:</dt>
+                    <dd>€ 80%</dd>
+                    <dt>Compatible with:</dt>
+                    <dd>electric vehicle,solar panels </dd>
+                </dl>
+            </div>
+        </article>
+    </div>
+    <div class="flexcontainer navigation">
+        <button type="button" class="previous">Configure personal preferences
+        </button>
+        <button class="next">Continue</button>
+    </div>
+</section>
+<section class="step" id="selection">
+    <h2>You've selected the following plan(s)</h2>
+    <div class="selected-tariff flexcontainer">
+        <article>
+            <h3>optimal electricity</h3><p>€ 149.50 / month</p>
+        </article>
+    </div>
+    <button class="next" data-target="confirmation">Confirm my choice</button>
+
+    <table>
+        <caption>All available plans</caption>
+        <thead>
+        <tr>
+            <td colspan="4">
+                <form id="table-sort" action="#" method="get">
+                    <label for="filter">
+                        Filter by:
+                    </label>
+                    <select name="filter" id="filter">
+                        <option value="name">Tariff name</option>
+                        <option value="type">Tariff type</option>
+                    </select>
+                    <label>
+                        <select name="direction" id="direction">
+                            <option value="asc">Ascending</option>
+                            <option value="desc">Descending</option>
+                        </select>
+                    </label>
+                </form>
+            </td>
+        </tr>
+        <tr>
+            <th scope="col">Plan name</th>
+            <th scope="col">Energy type</th>
+            <th scope="col">Tariff</th>
+            <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>optimal electricity</td>
+            <td> electricity </td>
+            <td>€ 149.50 / month</td>
+            <td>
+                <button>Choose this one instead</button>
+            </td>
+        </tr> <tr>
+            <td>optimal gas</td>
+            <td> gas </td>
+            <td>€ 918.95 / month</td>
+            <td>
+                <button>Choose this one instead</button>
+            </td>
+        </tr> <tr>
+            <td>generous electricity</td>
+            <td> electricity </td>
+            <td>€ 179.40 / month</td>
+            <td>
+                <button>Choose this one instead</button>
+            </td>
+        </tr> <tr>
+            <td>generous gas</td>
+            <td> gas </td>
+            <td>€ 3446.07 / month</td>
+            <td>
+                <button>Choose this one instead</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <button type="button" class="previous" >Back to tariff suggestion</button>
+</section>
+
+<section class="step" id="confirmation">
+    <h2>Thank you customer from region <strong class="region">8000</strong> for your engagement!</h2>
+    <p>You've selected the following plans:</p>
+    <div class="flexcontainer">
+
+    </div>
+    <p>Your total monthly payment will be <span class="total-monthly">€ 700</span> (VAT included). Payments will be deducted
+        from your account by monthly direct debit, starting the first of next month. </p>
+    <p>Thank you for trusting HOWEST tariff chooser.</p>
+</section>
+
+
+</body>
+</html>
