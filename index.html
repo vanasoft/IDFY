@@ -73,11 +73,11 @@
 
             <p>What type of contracts are you looking for?</p><br>
 
-            <input type="checkbox" name="contracttype" id="electricity" value="0" required /><label for="electricity">
+            <input type="checkbox" name="contracttype" id="electricity" value="electricity" required /><label for="electricity">
                 Electricity
             </label>
 
-            <input type="checkbox" name="contracttype" id="gas" value="1" required /><label for="gas">
+            <input type="checkbox" name="contracttype" id="gas" value="gas" required /><label for="gas">
                 Gas
             </label>
 
@@ -104,22 +104,22 @@
             <label for="renewability" class="range">
                 50%
             </label>
-            <input type="range" name="renewability" id="renewability" value="50" required />
+            <input type="range" name="renewability" id="renewability" onchange="displayRenewabilityPercentage(this)" step="10" value="50" required />
 
             <p>Do you have one of the following?</p><br>
 
-            <input type="checkbox" name="amenities" id="el-veh" value="0" required /><label for="el-veh">
+            <input type="checkbox" name="amenities" id="el-veh" value="electric vehicle" required /><label for="el-veh">
                 Electric Vehicle
             </label>
 
-            <input type="checkbox" name="amenities" id="solar" value="1" required /><label for="solar">
+            <input type="checkbox" name="amenities" id="solar" value="solar panels" required /><label for="solar">
                 Solar
             </label>
 
             <label for="amount-of-people">
                 Amount of people in your household:
             </label>
-            <input type="number" name="amount-of-people" id="amount-of-people" value="1" required />
+            <input type="number" name="amount-of-people" id="amount-of-people" value="1" min="1" max='20' required />
 
             <p>Type of property</p><br>
 

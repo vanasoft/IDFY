@@ -28,7 +28,6 @@ function renderFullOverview(container, tariffs) {
   `
     tariffCounter++
   })
-  console.log(container, tariffs)
 }
 
 function replaceTariff(tariff) {}
