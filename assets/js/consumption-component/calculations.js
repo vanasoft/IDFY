@@ -15,25 +15,26 @@ function calculateAverageHeatConsumption(
   peopleInHousehold
 ) {
   const av = _config.heatConsumption
-  let penalty = 0
-  /*  let insulationValue
-	insulation.forEach((inn) => {
-		if (inn.check) {
-			insulationValue = inn.value
-		}
-	}) */
-  if (insulation == 'No') {
-    penalty = av.noInsulationPenalty
-  }
-  console.log(insulation, propertyType, peopleInHousehold, penalty)
+  let penalty = getInsulationPenalty(insulation, propertyType)
+  let residentialBonus = getResidentialBonus(propertyType)
+  //console.log(insulation, propertyType, peopleInHousehold, penalty)
   return (
     av.basicHeatConsumptionDetachedHouse -
-    av.residenceTypeModifiers[propertyType] +
-    (penalty - av.neighbourInsulationModifiers[propertyType]) +
+    residentialBonus +
+    penalty +
     av.personalConsumptionFactor * Math.log(peopleInHousehold)
   )
 }
 
-function getInsulationPenalty(insulation, propertyType) {}
+function getInsulationPenalty(insulation, propertyType) {
+  const av = _config.heatConsumption
+  let penalty = 0
+  if (insulation == 'No') {
+    penalty = av.noInsulationPenalty
+  }
+  return penalty - av.neighbourInsulationModifiers[propertyType]
+}
 
-function getResidentialBonus(propertyType) {}
+function getResidentialBonus(propertyType) {
+  return _config.heatConsumption.residenceTypeModifiers[propertyType]
+}

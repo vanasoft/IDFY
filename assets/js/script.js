@@ -1,7 +1,7 @@
 'use strict'
 
 document.addEventListener('DOMContentLoaded', () => {
-  init('#selection')
+  init('#general-information')
 
   document
     .querySelector('[data-target="personal-preferences"]')
