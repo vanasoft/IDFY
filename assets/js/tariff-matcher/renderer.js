@@ -41,14 +41,14 @@ function renderTariffs(matchingTariffs, container, renderDetail) {
   })
 }
 
-function renderFinalSelection(container, tariffs) {
+function renderSelectedTariff(container, tariffs) {
   let monthly = 0
   document.querySelector(container).innerHTML = ''
   let est = getEstimatedHeatOrElectricity()
   tariffs.forEach((tariff) => {
     monthly = calculateMonthlyPrice(tariff.pricePerkWh, est[tariff.type])
     document.querySelector(container).innerHTML += `
-    <article>
+     <article selected-tariff tariff_name='${tariff.name}'>
                 <h3>${tariff.name.replace('-', ' ')}</h3>
                 <p>€ ${monthly.toFixed(2)} / month</p>
             </article>
@@ -57,7 +57,37 @@ function renderFinalSelection(container, tariffs) {
   })
 }
 
-function renderRegion(region) {}
+function renderFinalSelection(container, tariffs) {
+  let monthly = 0
+  let vat = 0
+  let totalMonthly = 0
+  let vatPercentage = document.querySelector(
+    '[name="vatpercentage"]:checked'
+  ).value
+  document.querySelector(container).innerHTML = ''
+  let est = getEstimatedHeatOrElectricity()
+  tariffs.forEach((tariff) => {
+    monthly = calculateMonthlyPrice(tariff.pricePerkWh, est[tariff.type])
+    vat = calculateVAT(monthly, vatPercentage)
+    document.querySelector(container).innerHTML += `
+    <article>
+                <h3>${tariff.name.replace('-', ' ')}</h3>
+                <p>€ ${monthly.toFixed(2)} / month (€ ${vat.toFixed(
+      2
+    )} VAT) </p>
+            </article>
+    
+  `
+    totalMonthly = totalMonthly + monthly + vat
+  })
+
+  document.querySelector('.total-monthly').innerHTML =
+    '€ ' + totalMonthly.toFixed(2)
+}
+
+function renderRegion(region) {
+  document.querySelector('.region').innerHTML = region
+}
 
 function renderConsumptionEstimates() {}
 

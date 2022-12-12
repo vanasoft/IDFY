@@ -12,11 +12,27 @@ document.addEventListener('DOMContentLoaded', () => {
     .addEventListener('click', () => init('#general-information'))
 
   document
+    .querySelector('[data-target="confirmation"]')
+    .addEventListener('click', () => {
+      init('#confirmation')
+
+      let selector = document.querySelectorAll(
+        '.selected-tariff [selected-tariff]'
+      )
+      let region = document.querySelector('#postcode').value
+      renderRegion(region)
+      // calculateVAT(price, vatPercentage)
+      let finalSelections = getSelectedTariffs(selector)
+      console.log(selector, finalSelections)
+      renderFinalSelection('#confirmation .flexcontainer', finalSelections)
+    })
+
+  document
     .querySelector('[data-target="selection"]')
     .addEventListener('click', () => {
       init('#selection')
       // let processSelection = processSelection(e)
-      let selectedTariff = [] //= getSelectedTariffs(selector)
+      /*  let selectedTariff = [] //= getSelectedTariffs(selector)
       console.log(selectedTariff)
       let selected = document.querySelectorAll(
         '.render-tariff-overview .selected'
@@ -29,15 +45,22 @@ document.addEventListener('DOMContentLoaded', () => {
             selectedTariff.push(tariff)
           }
         })
-      })
-      console.log(selected, selectedTariff)
-      renderFinalSelection('.selected-tariff', selectedTariff)
+      }) */
+
+      let selector = document.querySelectorAll(
+        '.render-tariff-overview .selected'
+      )
+
+      let selectedTariffs = getSelectedTariffs(selector)
+      console.log(selector, selectedTariffs)
+      renderSelectedTariff('.selected-tariff', selectedTariffs)
       renderFullOverview('#selection', _tariffs)
     })
 
   document
     .querySelector('[data-target="tariff-overview"]')
-    .addEventListener('click', () => {
+    .addEventListener('click', (e) => {
+      e.preventDefault()
       init('#tariff-overview')
       const minimalRenewableEnergy =
         document.querySelector('#renewability').value

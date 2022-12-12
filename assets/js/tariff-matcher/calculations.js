@@ -6,4 +6,6 @@ function calculateMonthlyPrice(pricePerkWh, estimatedkWh) {
   return (pricePerkWh * estimatedkWh) / 12
 }
 
-function calculateVAT(price, vatPercentage) {}
+function calculateVAT(price, vatPercentage) {
+  return price * vatPercentage
+}
