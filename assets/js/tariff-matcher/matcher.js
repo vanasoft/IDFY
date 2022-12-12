@@ -5,7 +5,7 @@ function getOptimalPlans(types, minimalRenewableEnergy, compatibility) {}
 
 function filterRenewableEnergy(tariffs, minimalRenewableEnergy) {
   const filteredTariff = tariffs.filter(
-    (tariff) => tariff.minimalRenewableEnergy <= minimalRenewableEnergy
+    (tariff) => tariff.minimalRenewableEnergy >= minimalRenewableEnergy
   )
   return filteredTariff
 }

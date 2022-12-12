@@ -5,14 +5,23 @@
 function renderTariffs(matchingTariffs, container, renderDetail) {
   let tariffCounter = 0
   let monthly = 0
+
+  console.log(renderDetail)
+
+  document.querySelector('.electricityEstimate span').innerHTML =
+    renderDetail.electricity + 'kWh'
+  document.querySelector('.gasEstimate span').innerHTML =
+    renderDetail.gas + 'kWh'
+
   matchingTariffs.forEach((tariff) => {
-    monthly = calculateMonthlyPrice(tariff.pricePerkWh, 233)
+    monthly = calculateMonthlyPrice(
+      tariff.pricePerkWh,
+      renderDetail[tariff.type]
+    )
     document.querySelector(container).innerHTML += `
-    <article>
-       <h3>${tariff.name.replace(
-         '-',
-         ' '
-       )}</h3><a href="#" onclick='showHidePopup(${tariffCounter})'>view details</a><p>€ ${monthly.toFixed(
+    <article onclick='selectTariff(this)'>
+       <h3>${tariff.name.replace('-', ' ')}</h3>
+       <a href="#" onclick='showHidePopup(${tariffCounter})'>view details</a><p>€ ${monthly.toFixed(
       2
     )} / month</p>   <button>Choose plan</button>
        <div class="details hidden">
@@ -38,7 +47,14 @@ function renderRegion(region) {}
 
 function renderConsumptionEstimates() {}
 
-function selectTariff(target) {}
+function selectTariff(target) {
+  console.log(target.classList.contains('selected'))
+  if (target.classList.contains('selected')) {
+    target.classList.remove('selected')
+  } else {
+    target.classList.add('selected')
+  }
+}
 
 function showHidePopup(target) {
   let x = document.querySelectorAll('.render-tariff-overview .details')[target]

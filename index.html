@@ -123,31 +123,31 @@
 
             <p>Type of property</p><br>
 
-            <input type="radio" name="propertytype" id="apartment" value="0" required /><label for="apartment">
+            <input type="radio" name="propertytype" id="apartment" value="apartment" required /><label for="apartment">
 
                 Apartment
             </label>
 
-            <input type="radio" name="propertytype" id="terraced" value="1" required /><label for="terraced">
+            <input type="radio" name="propertytype" id="terraced" value="terracedHouse" required /><label for="terraced">
                 Terraced house
             </label>
 
-            <input type="radio" name="propertytype" id="semi-detached" value="1" required /><label for="semi-detached">
+            <input type="radio" name="propertytype" id="semi-detached" value="semiDetached" required /><label for="semi-detached">
                 Semi-detached house
             </label>
 
-            <input type="radio" name="propertytype" id="detached" value="1" required /><label for="detached">
+            <input type="radio" name="propertytype" id="detached" value="detachedHouse" required /><label for="detached">
                 Detached house
             </label>
 
             <p>Is the property insulated?</p><br>
 
-            <input type="radio" name="insulation" id="insulation-yes" value="0" required /><label for="insulation-yes">
+            <input type="radio" name="insulation" id="insulation-yes" value="Yes" required /><label for="insulation-yes">
 
                 Yes
             </label>
 
-            <input type="radio" name="insulation" id="insulation-no" value="1" required /><label for="insulation-no">
+            <input type="radio" name="insulation" id="insulation-no" value="No" required /><label for="insulation-no">
                 No
             </label>
 
@@ -186,7 +186,7 @@
         <div class="flexcontainer navigation">
             <button type="button" class="previous">Configure personal preferences
             </button>
-            <button class="next">Continue</button>
+            <button class="next" onclick="init('#selection') ">Continue</button>
         </div>
     </section>
     <section class="step" id="selection">
