@@ -13,7 +13,7 @@ function renderFullOverview(container, tariffs) {
                     <td> ${tariff.type} </td>
                     <td>€ ${monthly.toFixed(2)} / month</td>
                     <td>
-                        <button onclick='showHidePopup(${tariffCounter})'>Choose this one instead</button>
+                        <button onclick=''>Choose this one instead</button>
                     </td>
                 </tr>
   `

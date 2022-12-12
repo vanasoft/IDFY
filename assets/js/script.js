@@ -4,58 +4,12 @@ document.addEventListener('DOMContentLoaded', () => {
   init('#general-information')
 
   document
-    .querySelector('[data-target="personal-preferences"]')
-    .addEventListener('click', () => init('#personal-preferences'))
-
-  document
     .querySelector('[data-target="general-information"]')
     .addEventListener('click', () => init('#general-information'))
 
   document
-    .querySelector('[data-target="confirmation"]')
-    .addEventListener('click', () => {
-      init('#confirmation')
-
-      let selector = document.querySelectorAll(
-        '.selected-tariff [selected-tariff]'
-      )
-      let region = document.querySelector('#postcode').value
-      renderRegion(region)
-      // calculateVAT(price, vatPercentage)
-      let finalSelections = getSelectedTariffs(selector)
-      console.log(selector, finalSelections)
-      renderFinalSelection('#confirmation .flexcontainer', finalSelections)
-    })
-
-  document
-    .querySelector('[data-target="selection"]')
-    .addEventListener('click', () => {
-      init('#selection')
-      // let processSelection = processSelection(e)
-      /*  let selectedTariff = [] //= getSelectedTariffs(selector)
-      console.log(selectedTariff)
-      let selected = document.querySelectorAll(
-        '.render-tariff-overview .selected'
-      )
-
-      selected.forEach((s) => {
-        let tariff_name = s.getAttribute('tariff_name')
-        _tariffs.forEach((tariff) => {
-          if (tariff.name == tariff_name) {
-            selectedTariff.push(tariff)
-          }
-        })
-      }) */
-
-      let selector = document.querySelectorAll(
-        '.render-tariff-overview .selected'
-      )
-
-      let selectedTariffs = getSelectedTariffs(selector)
-      console.log(selector, selectedTariffs)
-      renderSelectedTariff('.selected-tariff', selectedTariffs)
-      renderFullOverview('#selection', _tariffs)
-    })
+    .querySelector('[data-target="personal-preferences"]')
+    .addEventListener('click', () => init('#personal-preferences'))
 
   document
     .querySelector('[data-target="tariff-overview"]')
@@ -92,6 +46,52 @@ document.addEventListener('DOMContentLoaded', () => {
       //console.log(matchingTariffs, compatibility)
       renderTariffs(matchingTariffs, '.render-tariff-overview', renderDetail)
       // renderFullOverview('.render-tariff-overview', _tariffs)
+    })
+
+  document
+    .querySelector('[data-target="selection"]')
+    .addEventListener('click', () => {
+      init('#selection')
+      // let processSelection = processSelection(e)
+      /*  let selectedTariff = [] //= getSelectedTariffs(selector)
+      console.log(selectedTariff)
+      let selected = document.querySelectorAll(
+        '.render-tariff-overview .selected'
+      )
+
+      selected.forEach((s) => {
+        let tariff_name = s.getAttribute('tariff_name')
+        _tariffs.forEach((tariff) => {
+          if (tariff.name == tariff_name) {
+            selectedTariff.push(tariff)
+          }
+        })
+      }) */
+
+      let selector = document.querySelectorAll(
+        '.render-tariff-overview .selected'
+      )
+
+      let selectedTariffs = getSelectedTariffs(selector)
+
+      renderSelectedTariff('.selected-tariff', selectedTariffs)
+      renderFullOverview('#selection', _tariffs)
+    })
+
+  document
+    .querySelector('[data-target="confirmation"]')
+    .addEventListener('click', () => {
+      init('#confirmation')
+
+      let selector = document.querySelectorAll(
+        '.selected-tariff [selected-tariff]'
+      )
+      let region = document.querySelector('#postcode').value
+      renderRegion(region)
+      // calculateVAT(price, vatPercentage)
+      let finalSelections = getSelectedTariffs(selector)
+      console.log(selector, finalSelections)
+      renderFinalSelection('#confirmation .flexcontainer', finalSelections)
     })
 })
 
