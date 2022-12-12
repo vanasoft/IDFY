@@ -19,7 +19,7 @@ function renderTariffs(matchingTariffs, container, renderDetail) {
       renderDetail[tariff.type]
     )
     document.querySelector(container).innerHTML += `
-    <article onclick='selectTariff(this)'>
+    <article onclick='selectTariff(this)' tariff_name='${tariff.name}'>
        <h3>${tariff.name.replace('-', ' ')}</h3>
        <a href="#" onclick='showHidePopup(${tariffCounter})'>view details</a><p>€ ${monthly.toFixed(
       2
@@ -41,14 +41,28 @@ function renderTariffs(matchingTariffs, container, renderDetail) {
   })
 }
 
-function renderFinalSelection(container, tariffs) {}
+function renderFinalSelection(container, tariffs) {
+  let monthly = 0
+  document.querySelector(container).innerHTML = ''
+  let est = getEstimatedHeatOrElectricity()
+  tariffs.forEach((tariff) => {
+    monthly = calculateMonthlyPrice(tariff.pricePerkWh, est[tariff.type])
+    document.querySelector(container).innerHTML += `
+    <article>
+                <h3>${tariff.name.replace('-', ' ')}</h3>
+                <p>€ ${monthly.toFixed(2)} / month</p>
+            </article>
+    
+  `
+  })
+}
 
 function renderRegion(region) {}
 
 function renderConsumptionEstimates() {}
 
 function selectTariff(target) {
-  console.log(target.classList.contains('selected'))
+  //console.log(target.classList.contains('selected'))
   if (target.classList.contains('selected')) {
     target.classList.remove('selected')
   } else {

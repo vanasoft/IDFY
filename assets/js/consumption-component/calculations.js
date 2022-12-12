@@ -38,3 +38,19 @@ function getInsulationPenalty(insulation, propertyType) {
 function getResidentialBonus(propertyType) {
   return _config.heatConsumption.residenceTypeModifiers[propertyType]
 }
+
+function getEstimatedHeatOrElectricity() {
+  const peopleInHousehold = document.querySelector('#amount-of-people').value
+  const insulation = document.querySelector('[name="insulation"]:checked').value
+  const propertyType = document.querySelector(
+    '[name="propertytype"]:checked'
+  ).value
+  const aveElectric = calculateAverageElectricityConsumption(peopleInHousehold)
+  const aveHeat = calculateAverageHeatConsumption(
+    insulation,
+    propertyType,
+    peopleInHousehold
+  )
+
+  return { electricity: aveElectric, gas: aveHeat }
+}
