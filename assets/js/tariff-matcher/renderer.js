@@ -9,9 +9,9 @@ function renderTariffs(matchingTariffs, container, renderDetail) {
   console.log(renderDetail)
 
   document.querySelector('.electricityEstimate span').innerHTML =
-    renderDetail.electricity + 'kWh'
+    renderDetail.electricity.toFixed(2) + 'kWh'
   document.querySelector('.gasEstimate span').innerHTML =
-    renderDetail.gas + 'kWh'
+    renderDetail.gas.toFixed(2) + 'kWh'
 
   document.querySelector(container).innerHTML = ''
   matchingTariffs.forEach((tariff) => {

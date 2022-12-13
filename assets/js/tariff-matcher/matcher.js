@@ -28,12 +28,14 @@ function filterTariffTypes(tariffs, typeValues) {
 
 function filterCompatibility(tariffs, compatibility) {
   let found = false
+  let checkCount = 0
   const filteredTariff = tariffs.filter((tariff) => {
     compatibility.forEach((v) => {
       if (tariff.compatibility) {
         console.log(v.value, tariff.compatibility)
         if (v.checked && tariff.compatibility.includes(v.value)) {
           found = true
+          checkCount++
         }
       }
     })
@@ -42,5 +44,7 @@ function filterCompatibility(tariffs, compatibility) {
       return tariff
     }
   })
+  console.log('mnm', checkCount)
+  if (checkCount == 0) return tariffs
   return filteredTariff
 }
