@@ -13,7 +13,9 @@ function renderFullOverview(container, tariffs) {
                     <td> ${tariff.type} </td>
                     <td>€ ${monthly.toFixed(2)} / month</td>
                     <td>
-                        <button onclick=''>Choose this one instead</button>
+                        <button onclick='replaceTariff(${JSON.stringify(
+                          tariff
+                        )} )'>Choose this one instead</button>
                     </td>
                 </tr>
   `
@@ -21,6 +23,25 @@ function renderFullOverview(container, tariffs) {
   })
 }
 
-function replaceTariff(tariff) {}
+function replaceTariff(tariff) {
+  let selector = document.querySelectorAll('.render-tariff-overview .selected')
+
+  //let selectedTariffs = getSelectedTariffs(selector)
+
+  let selectedTariffs = []
+  selector.forEach((s) => {
+    let tariff_name = s.getAttribute('tariff_name')
+    _tariffs.forEach((tariff) => {
+      if (tariff.name == tariff_name) {
+        selectedTariffs.push(tariff)
+      }
+    })
+  })
+  console.log('frist', tariff, selectedTariffs)
+  selectedTariffs.pop()
+  selectedTariffs.push(tariff)
+  console.log('second', tariff, selectedTariffs)
+  renderSelectedTariff('.selected-tariff', selectedTariffs)
+}
 
 function handleTariffChange(e) {}
