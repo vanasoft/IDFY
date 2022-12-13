@@ -51,7 +51,6 @@ document.addEventListener('DOMContentLoaded', () => {
   document
     .querySelector('[data-target="selection"]')
     .addEventListener('click', () => {
-      init('#selection')
       // let processSelection = processSelection(e)
       /*  let selectedTariff = [] //= getSelectedTariffs(selector)
       console.log(selectedTariff)
@@ -73,9 +72,14 @@ document.addEventListener('DOMContentLoaded', () => {
       )
 
       let selectedTariffs = getSelectedTariffs(selector)
-
+      console.log(selectedTariffs)
+      if (selectedTariffs.length == 0) {
+        return alert('Please Select A Tariff')
+      } //else {
+      init('#selection')
       renderSelectedTariff('.selected-tariff', selectedTariffs)
       renderFullOverview('#selection', _tariffs)
+      //}
     })
 
   document
@@ -90,9 +94,16 @@ document.addEventListener('DOMContentLoaded', () => {
       renderRegion(region)
       // calculateVAT(price, vatPercentage)
       let finalSelections = getSelectedTariffs(selector)
-      console.log(selector, finalSelections)
+      //console.log(selector, finalSelections)
       renderFinalSelection('#confirmation .flexcontainer', finalSelections)
     })
+
+  document
+    .querySelector('[data-target="back-personal-preferences"]')
+    .addEventListener('click', () => init('#personal-preferences'))
+  document
+    .querySelector('[data-target="back-tariff-overview"]')
+    .addEventListener('click', () => init('#tariff-overview'))
 })
 
 function init(showPage) {

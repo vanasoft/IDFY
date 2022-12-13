@@ -13,6 +13,7 @@ function renderTariffs(matchingTariffs, container, renderDetail) {
   document.querySelector('.gasEstimate span').innerHTML =
     renderDetail.gas + 'kWh'
 
+  document.querySelector(container).innerHTML = ''
   matchingTariffs.forEach((tariff) => {
     monthly = calculateMonthlyPrice(
       tariff.pricePerkWh,

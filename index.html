@@ -58,7 +58,7 @@
 
             <p>Are you a residential or business customer?</p><br>
 
-            <input type="radio" name="vatpercentage" id="residential" value="0.06" required /><label for="residential">
+            <input type="radio" name="vatpercentage" id="residential" value="0.06" checked /><label for="residential">
 
                 Residential
                 <span>
@@ -73,11 +73,11 @@
 
             <p>What type of contracts are you looking for?</p><br>
 
-            <input type="checkbox" name="contracttype" id="electricity" value="electricity" required /><label for="electricity">
+            <input type="checkbox" name="contracttype" id="electricity" value="electricity" checked /><label for="electricity">
                 Electricity
             </label>
 
-            <input type="checkbox" name="contracttype" id="gas" value="gas" required /><label for="gas">
+            <input type="checkbox" name="contracttype" id="gas" value="gas" checked /><label for="gas">
                 Gas
             </label>
 
@@ -108,11 +108,11 @@
 
             <p>Do you have one of the following?</p><br>
 
-            <input type="checkbox" name="amenities" id="el-veh" value="electric vehicle" required /><label for="el-veh">
+            <input type="checkbox" name="amenities" id="el-veh" value="electric vehicle" checked /><label for="el-veh">
                 Electric Vehicle
             </label>
 
-            <input type="checkbox" name="amenities" id="solar" value="solar panels" required /><label for="solar">
+            <input type="checkbox" name="amenities" id="solar" value="solar panels" checked /><label for="solar">
                 Solar
             </label>
 
@@ -136,13 +136,13 @@
                 Semi-detached house
             </label>
 
-            <input type="radio" name="propertytype" id="detached" value="detachedHouse" required /><label for="detached">
+            <input type="radio" name="propertytype" id="detached" value="detachedHouse" checked /><label for="detached">
                 Detached house
             </label>
 
             <p>Is the property insulated?</p><br>
 
-            <input type="radio" name="insulation" id="insulation-yes" value="Yes" required /><label for="insulation-yes">
+            <input type="radio" name="insulation" id="insulation-yes" value="Yes" checked /><label for="insulation-yes">
 
                 Yes
             </label>
@@ -184,7 +184,7 @@
         </article> -->
         </div>
         <div class="flexcontainer navigation">
-            <button type="button" class="previous">Configure personal preferences
+            <button type="button" class="previous" data-target="back-personal-preferences" >Configure personal preferences
             </button>
             <button class="next" data-target="selection">Continue</button>
         </div>
@@ -263,7 +263,7 @@
                 </tr>
             </tbody>
         </table>
-        <button type="button" class="previous">Back to tariff suggestion</button>
+        <button type="button" class="previous" data-target="back-tariff-overview" >Back to tariff suggestion</button>
     </section>
 
     <section class="step" id="confirmation">
